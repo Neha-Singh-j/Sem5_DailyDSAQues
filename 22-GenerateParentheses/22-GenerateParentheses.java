@@ -1,4 +1,4 @@
-// Last updated: 8/1/2025, 10:42:27 PM
+// Last updated: 8/12/2025, 10:09:25 PM
 class Solution {
     public List<String> generateParenthesis(int n) {
      
@@ -7,9 +7,8 @@ class Solution {
 		return arr;
 	}
 	public static void Parentheses(int n, int closed,int open,String ans,List<String> arr) {
-		// StringBuilder sb=new StringBuilder();
 		if(open==n && closed==n) {
-//			System.out.println(ans);
+
 			arr.add(ans);
 			return;
 		}
