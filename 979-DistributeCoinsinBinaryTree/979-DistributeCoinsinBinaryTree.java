@@ -1,4 +1,4 @@
-// Last updated: 8/13/2025, 12:08:44 PM
+// Last updated: 8/17/2025, 11:18:08 PM
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -28,9 +28,8 @@ class Solution {
         }
         int left = CountMoves(root.left);
         int right=CountMoves(root.right);
-        int val=root.val-1+left+right;
-        moves+=Math.abs(left)+Math.abs(right);
-        return val;
+        moves+= Math.abs(left)+Math.abs(right);
+        return root.val-1+left+right;
 
     }
 }
