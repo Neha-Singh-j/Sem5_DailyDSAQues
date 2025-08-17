@@ -40,3 +40,11 @@ Each day, I aim to solve at least one LeetCode problem and commit the solution t
 Feel free to fork or star ⭐ this repository if you're also on a DSA learning journey!
 
 ```
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## String
+|  |
+| ------- |
+| [2346-largest-3-same-digit-number-in-string](https://github.com/Neha-Singh-j/Sem5_DailyDSAQues/tree/master/2346-largest-3-same-digit-number-in-string) |
+<!---LeetCode Topics End-->
