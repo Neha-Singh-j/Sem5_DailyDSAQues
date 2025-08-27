@@ -1,4 +1,4 @@
-// Last updated: 8/27/2025, 12:41:25 PM
+// Last updated: 8/27/2025, 12:45:26 PM
 class Solution {
     public int longestConsecutive(int[] nums) {
         int ans=0;
