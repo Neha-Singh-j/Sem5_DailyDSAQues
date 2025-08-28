@@ -1,33 +1,31 @@
-// Last updated: 8/1/2025, 10:41:33 PM
+// Last updated: 8/28/2025, 11:21:09 AM
 class Solution {
-    public List<List<String>> groupAnagrams(String[] strs) {
-        List<List<String>> res = new ArrayList<>();
-        HashSet<String> set = new HashSet<>();
-        String[] arr = new String[strs.length];
-        for (int i = 0; i < strs.length; i++) {
-            char[] chars = strs[i].toCharArray(); 
-            Arrays.sort(chars);
-            arr[i]= new String(chars);
-            
-        }
-        for(int i=0;i<strs.length;i++){
-            List<String> curr=new ArrayList<>();
-            
-            char[] chars = strs[i].toCharArray(); 
-            Arrays.sort(chars);
-            String s= new String(chars);
-            if(set.contains(s)) continue;
-            set.add(s);
-            for(int j=0;j<strs.length;j++){
-                    if(s.equals(arr[j])){
-                        curr.add(strs[j]);
-                        // System.out.println(curr);
-                    }
+    public List<List<String>> groupAnagrams(String[] arr) {
+        HashMap<String,List<String>>map=new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            String key=GetKey(arr[i]);
+            if(!map.containsKey(key)){
+                map.put(key,new ArrayList<>());
             }
-            res.add(curr);
-            
+            map.get(key).add(arr[i]);
         }
+        List<List<String>> ll=new ArrayList<>();
+        for(String key: map.keySet()){
+            ll.add(map.get(key));
+        }
+        return ll;
+    }
+    public static String GetKey(String strs){
+         int[] arr = new int[26];
+        for (int i = 0; i < strs.length(); i++) {
+            char ch=strs.charAt(i);
+            arr[ch-'a']++;
 
-        return res;
+        }
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<arr.length;i++){
+            sb.append(arr[i]).append(" ");
+        }
+        return sb.toString();
     }
 }
