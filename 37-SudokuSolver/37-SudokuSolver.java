@@ -1,13 +1,13 @@
-// Last updated: 8/1/2025, 10:41:54 PM
+// Last updated: 8/31/2025, 3:56:12 PM
 class Solution {
     public void solveSudoku(char[][] board) {
 
-     Print(board, 0, 0);
-			return;
+        Print(board, 0, 0);
+		return;
 
-		}
+	}
 	
-		private static boolean Print(char[][] grid ,int row,int col) {
+	private static boolean Print(char[][] grid ,int row,int col) {
 			if(col==9) {
 				row++;
 				col=0;
