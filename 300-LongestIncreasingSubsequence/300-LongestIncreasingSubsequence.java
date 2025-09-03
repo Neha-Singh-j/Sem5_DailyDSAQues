@@ -1,30 +1,16 @@
-// Last updated: 8/31/2025, 4:24:11 PM
+// Last updated: 9/3/2025, 12:35:00 PM
 class Solution {
-    public int lengthOfLIS(int[] nums) {
-    ArrayList<Integer> sub = new ArrayList<>();
-
-        for (int num : nums) {
-            int idx = binarySearch(sub, num);
-            if (idx < sub.size()) {
-                sub.set(idx, num); // replace
-            } else {
-                sub.add(num); // append
+    public int lengthOfLIS(int[] arr) {
+        int[] dp=new int[arr.length];
+        Arrays.fill(dp,1);
+        for(int i=1;i<dp.length;i++){
+            for(int j=i-1;j>=0;j--){
+                if(arr[i]>arr[j]){
+                    int x=dp[j];
+                    dp[i]=Math.max(dp[i],x+1);
+                }
             }
         }
-
-        return sub.size();
-    }
-
-    private int binarySearch(ArrayList<Integer> sub, int target) {
-        int left = 0, right = sub.size() - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (sub.get(mid) < target) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-        return left; 
+        return Arrays.stream(dp).max().getAsInt();
     }
 }
