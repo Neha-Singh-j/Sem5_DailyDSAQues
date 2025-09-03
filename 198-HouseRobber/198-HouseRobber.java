@@ -1,13 +1,23 @@
-// Last updated: 8/1/2025, 10:38:54 PM
+// Last updated: 9/3/2025, 11:19:23 AM
 class Solution {
     public int rob(int[] nums) {
-        if(nums.length==0) return 0;
-        if(nums.length==1) return nums[0];
-        int prev1=0,prev2=0;
-        for(int num:nums){
-            int temp=prev1;
-            prev1=Math.max(prev1,prev2+num);
-            prev2=temp;
-        }return prev1;
+        // bottom up------>
+        // 2 recursive calls  --forward , backward---what impact on filing table.................
+        // rpob house or not --choice 
+        int[] dp=new int[nums.length];
+        Arrays.fill(dp,-1);
+
+       return robber( nums,0,dp);
+    }
+    public static int robber(int[] arr,int i,int[] dp){
+        if(i>=arr.length){
+            return 0;
+        }
+        if(dp[i]!=-1){
+            return dp[i];
+        }
+        int rob=arr[i]+robber(arr,i+2,dp);
+        int Dont_rob=robber(arr,i+1,dp);
+        return dp[i]=Math.max(rob,Dont_rob);
     }
 }
