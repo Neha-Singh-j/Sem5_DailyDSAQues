@@ -1,37 +1,32 @@
-// Last updated: 9/27/2025, 2:17:22 PM
+// Last updated: 9/27/2025, 2:38:03 PM
 class Solution {
-
     public String frequencySort(String s) {
-        HashMap<Character,Integer> map=new HashMap<>();
-        // key:value pair in map is an entry
-        for(int i=0;i<s.length();i++){
-            char ch=s.charAt(i);
-            map.put(ch,map.getOrDefault(ch,0)+1);
+        int[] freq = new int[128];
+        for(char c: s.toCharArray()){
+            freq[c]++;
         }
-        
-        ArrayList<Map.Entry<Character, Integer>> al=new ArrayList<>(map.entrySet());
-        al.sort((a,b)->b.getValue()-a.getValue());
-        StringBuilder sb=new StringBuilder();
-        for(int i=0;i<al.size();i++){
-           char ch= al.get(i).getKey(); 
-            int freq= al.get(i).getValue();
-            while(freq-->0){
-                sb.append(ch);
+        // char ch[]=new char[s.length()];
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        while(i < s.length()){
+            int max = -1;
+            int idx = 0;
+            for(int j=0; j<128; j++){
+                if(freq[j] > max){
+                    max = freq[j];
+                    idx = j;
+                }
             }
+
+            while(max-- > 0){
+                // ch[i++] = (char)idx;
+                
+                sb.append(((char)idx)+"");
+                i++;
+            }
+            freq[idx] = 0;
         }
         return sb.toString();
+        // return new String(ch);
     }
-
-    // private static List<Character> freqSort(String s){
-
-    // }
-    // public class pair{
-    //     char ch;
-    //     int freq;
-    //     public class Pair(int frq, char ch){
-    //         this.ch=ch;
-    //         this.freq=freq;
-    //     }
-    // }
-
 }
