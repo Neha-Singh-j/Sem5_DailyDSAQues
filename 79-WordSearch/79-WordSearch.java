@@ -1,4 +1,4 @@
-// Last updated: 8/1/2025, 10:40:50 PM
+// Last updated: 10/30/2025, 10:51:23 AM
 class Solution {
     public boolean exist(char[][] board, String word) {
         int row = board.length;
@@ -16,9 +16,7 @@ class Solution {
             }
         }
         return false;
-
     }
-
     public static boolean backtrack(char[][] board,String word,boolean[][] visited,int i,int j,int index){
         if(index==word.length()) return true;
     if(i<0||i>=board.length||j<0||j>=board[0].length||visited[i][j]||board[i][j]!=word.charAt(index))
@@ -35,5 +33,5 @@ class Solution {
            }
             visited[i][j]=false;
             return false;
-}
+    }
 }
