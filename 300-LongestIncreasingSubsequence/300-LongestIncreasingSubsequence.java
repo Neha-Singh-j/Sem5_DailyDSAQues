@@ -1,7 +1,8 @@
-// Last updated: 9/3/2025, 12:35:00 PM
+// Last updated: 11/5/2025, 9:28:55 PM
 class Solution {
     public int lengthOfLIS(int[] arr) {
-        int[] dp=new int[arr.length];
+         int[] dp=new int[arr.length];
+
         Arrays.fill(dp,1);
         for(int i=1;i<dp.length;i++){
             for(int j=i-1;j>=0;j--){
