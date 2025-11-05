@@ -1,17 +1,17 @@
-// Last updated: 11/5/2025, 9:28:55 PM
+// Last updated: 11/5/2025, 9:42:12 PM
 class Solution {
-    public int lengthOfLIS(int[] arr) {
-         int[] dp=new int[arr.length];
-
-        Arrays.fill(dp,1);
-        for(int i=1;i<dp.length;i++){
-            for(int j=i-1;j>=0;j--){
-                if(arr[i]>arr[j]){
-                    int x=dp[j];
-                    dp[i]=Math.max(dp[i],x+1);
-                }
-            }
+    public int minCostClimbingStairs(int[] cost) {
+        int[] dp=new int[cost.length+1];
+        Arrays.fill(dp,-1);
+        return Math.min(climbing_Stairs(cost,dp,0),climbing_Stairs(cost,dp,1));
+    }
+    public static int climbing_Stairs(int[] cost, int[] dp, int i){
+        if(i>=cost.length){
+            return 0;
         }
-        return Arrays.stream(dp).max().getAsInt();
+        if(dp[i]!=-1) return dp[i];
+        int f=climbing_Stairs(cost,dp,i+1);
+        int s=climbing_Stairs(cost,dp,i+2);
+        return dp[i]=Math.min(f,s)+cost[i];
     }
 }
