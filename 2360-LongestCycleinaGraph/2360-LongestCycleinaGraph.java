@@ -1,44 +1,24 @@
-// Last updated: 11/19/2025, 12:36:37 PM
+// Last updated: 11/19/2025, 3:43:27 PM
 class Solution {
-    public int longestCycle(int[] edges) {
-	     int[] in=new int[edges.length];
-	     for(int i=0;i<edges.length;i++) {
-	    	 if(edges[i]==-1) continue;
-	    	 in[edges[i]]++;
-	     }
-	     Queue<Integer> q=new LinkedList<>();
-	     for(int i=0;i<in.length;i++) {
-	    	 if(in[i]==0) {
-	    		 q.add(i);
-	    	 }
-	     }
-	     boolean[] visited=new boolean[edges.length];
-	     while(!q.isEmpty()) {
-	    	 int e=q.poll();
-	    	 visited[e]=true;
-	    	 if(edges[e]!=-1) {
-	    		 in[edges[e]]--;
-	    		 if(in[edges[e]]==0){
-	    		 q.add(edges[e]);
-	    		 }
-	    	 }
-	     }
-	     int ans=-1;
-	     for(int i=0;i<visited.length;i++) {
-	    	 if(visited[i]==false) { // ek outgoing edege hai---ek vertex ek hi cycl emai aaega
-	    		 int c=1; 
-	    		 visited[i]=true; // jha se cycle start hua usko mark visited kia
-	    		 int nbrs=edges[i]; // cycle start hua hai to khtm bhi yhi hoga 
-	    		 while(nbrs!=i) {
-		    		 c++;
-		    		 visited[nbrs]=true;
-		    		 nbrs=edges[nbrs];
-	    			 
-	    		 }
-	    		 ans=Math.max(ans, c);
-	    	 }
-	     }
-	     return ans;
-	        
-	 }
+    public String countAndSay(int n) {
+        return rle("1", n - 1); // first term is "1", so n-1 iterations
+    }
+
+    public static String rle(String s, int n) {
+        while (n-- > 0) {
+            StringBuilder res = new StringBuilder();
+            int count = 1;
+            for (int i = 1; i < s.length(); i++) {
+                if (s.charAt(i) == s.charAt(i - 1)) {
+                    count++;
+                } else {
+                    res.append(count).append(s.charAt(i - 1));
+                    count = 1;
+                }
+            }
+            res.append(count).append(s.charAt(s.length() - 1));
+              s = res.toString();
+        }
+        return s;
+    }
 }
