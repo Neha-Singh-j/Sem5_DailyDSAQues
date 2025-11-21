@@ -1,4 +1,4 @@
-// Last updated: 8/1/2025, 10:40:19 PM
+// Last updated: 11/21/2025, 11:50:12 AM
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -16,26 +16,27 @@
  */
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-
         List<List<Integer>> res=new ArrayList<>();
-         if (root == null) return res;
-			Queue<TreeNode> q=new LinkedList<>();
-			q.add(root); //addlast
-			while(!q.isEmpty()) {
-                int size=q.size();
-                List<Integer> curr=new ArrayList<>();
-                for(int i=0;i<size;i++){
-				TreeNode n=q.poll(); //q.remove() --> removeFirst
-				curr.add(n.val);
-				if(n.left!=null) {
-					q.add(n.left);
-				}
-				if(n.right!=null) {
-					q.add(n.right);
-				}
+        if(root==null) return res;
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+
+        while(!q.isEmpty()){
+            int level=q.size();
+            List<Integer> curr=new ArrayList<>();
+            for(int i=0;i<level;i++){
+                TreeNode x=q.poll();
+                if(x.left!=null ){
+                    q.add(x.left);
                 }
-			res.add(curr);
-			}
-            return res;
-		}
+                if( x.right!=null){
+                    q.add(x.right);
+                }
+                curr.add(x.val);
+            }
+            res.add(curr);
+
+        }
+        return res;
+    }
 }
