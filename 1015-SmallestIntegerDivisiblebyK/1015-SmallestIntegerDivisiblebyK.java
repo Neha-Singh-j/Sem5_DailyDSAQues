@@ -1,4 +1,4 @@
-// Last updated: 11/25/2025, 3:06:53 PM
+// Last updated: 11/25/2025, 3:07:19 PM
 class Solution {
     public int smallestRepunitDivByK(int k) {
         if (k % 2 == 0 || k % 5 == 0) {
