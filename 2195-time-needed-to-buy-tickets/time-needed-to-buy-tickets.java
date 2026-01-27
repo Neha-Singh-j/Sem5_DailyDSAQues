@@ -10,8 +10,8 @@ class Solution {
             int[] x=q.poll();
             x[1]--;
             c++;
-            // if this is person k and no tickets left → stop
-            if (x[0] == k && x[1] == 0) {
+            // if this is person k and no tickets left - stop
+            if (x[0] == k && x[1] == 0) {     //taking care of this index==k
                 break;
             }
             // if still needs tickets, go back to queue
