@@ -1,41 +1,23 @@
 class Solution {
     public Node flatten(Node head) {
         if (head == null) return head;
-
         Node curr = head;
-
-        while (curr != null) {
-
-            // If current node has a child
-            if (curr.child != null) {
-
-                Node next = curr.next;
-                Node child = curr.child;
-
-                // Attach child to next
-                curr.next = child;
-                child.prev = curr;
-
-                // Find tail of child list
-                Node temp = child;
-                while (temp.next != null) {
-                    temp = temp.next;
-                }
-
-                // Attach original next after child tail
-                temp.next = next;
-                if (next != null) {
-                    next.prev = temp;
-                }
-
-                // Remove child pointer
-                curr.child = null;
+        Stack<Node> st=new Stack<>();
+        while(curr!=null){
+             if (curr.child != null) {
+                 if (curr.next != null) 
+                    st.push(curr.next);
+                curr.next=curr.child;
+                curr.child.prev = curr; 
+                curr.child=null;
             }
-
-            // Move forward only ONCE
-            curr = curr.next;
+            if(curr.next==null && !st.isEmpty()){
+                    Node pop=st.pop();
+                    curr.next=pop;
+                    pop.prev = curr; 
+            }
+            curr=curr.next;
         }
-
         return head;
     }
 }
