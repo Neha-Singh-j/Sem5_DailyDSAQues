@@ -7,9 +7,9 @@ class Solution {
             int h=1; //ancestor height
             while(a!=b){
                 if(a>b){
-                    a/=2;
+                    a>>=1;
                 }else{
-                    b/=2;
+                    b>>=1;
                 }
                 h++;
             }
