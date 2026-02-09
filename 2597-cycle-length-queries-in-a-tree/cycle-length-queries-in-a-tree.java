@@ -1,14 +1,19 @@
 class Solution {
     public int[] cycleLengthQueries(int n, int[][] queries) {
         int[] arr=new int[queries.length];
-        int i=0;
-        for(int[] x:queries){
-            int anc=ancs(x[0],x[1]);
-            int ht1=ht(x[0]);
-            int ht2=ht(x[1]);
-            int ancht=ht(anc);
-            arr[i]=ht1+ht2-2*ancht+1;
-            i++;
+        for(int i=0;i<queries.length;i++){
+            int a=queries[i][0];
+            int b=queries[i][1];
+            int h=1; //ancestor height
+            while(a!=b){
+                if(a>b){
+                    a/=2;
+                }else{
+                    b/=2;
+                }
+                h++;
+            }
+            arr[i]=h;
         }
         return arr;
     }
