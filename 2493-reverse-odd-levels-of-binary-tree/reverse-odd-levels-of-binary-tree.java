@@ -15,39 +15,22 @@
  */
 class Solution {
     public TreeNode reverseOddLevels(TreeNode root) {
-        LevelOrder(root);
+        if(root==null) return null;
+        dfs(root.left, root.right,1);
         return root;
     }
-    public void LevelOrder(TreeNode root) {
-			Queue<TreeNode> q=new LinkedList<>();
-			q.add(root); //addlast
-            int level=0;
-			while(!q.isEmpty()) {
-                int size=q.size();
-				ArrayList<TreeNode> al=new ArrayList<>();
-                for (int i = 0; i < size; i++) {
-				    TreeNode n=q.poll();
-                    al.add(n);
-                    if(n.left!=null) {
-                        q.add(n.left);
-                    }
-                    if(n.right!=null) {
-                        q.add(n.right);
-                    }
-                }
-                if(level%2==1){
-                    int a=0;
-                    int b=size-1;
-                    while(a<b){
-                        int temp=al.get(a).val;
-                        al.get(a).val=al.get(b).val;
-                        al.get(b).val=temp;
-                        a++;
-                        b--;
-                    }
-                }
-                level++;
-			}
-		}
-}
+    public void dfs(TreeNode left, TreeNode right,int level){
+        if(left==null || right==null){ //bcz its perfect tree so having bpth child or none
+            return;
+        }
+        if(level%2==1){ //odd level
+            int temp=left.val;
+            left.val=right.val;
+            right.val=temp;
+        }
+        dfs(left.left,right.right,level+1); //reversing paris from lleft side and right side accordingly
+        dfs(left.right,right.left,level+1);
+        
 
+    }
+}
