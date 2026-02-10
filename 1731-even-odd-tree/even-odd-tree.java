@@ -23,39 +23,26 @@ class Solution {
 			Queue<TreeNode> q=new LinkedList<>();
 			q.add(root); //addlast
             int level=0;
+            int prev=0;
 			while(!q.isEmpty()) {
                 int size=q.size();
-				ArrayList<TreeNode> al=new ArrayList<>();
+                if(level%2==0){
+                    prev=-1;
+                }else{
+                    prev=Integer.MAX_VALUE;;
+                }
                 for (int i = 0; i < size; i++) {
 				    TreeNode n=q.poll();
-                    al.add(n);
-                    if(n.left!=null) {
-                        q.add(n.left);
-                    }
-                    if(n.right!=null) {
-                        q.add(n.right);
-                    }
-                }
-                if(level%2==1){ //even number sin dec oreder
-                    int prev=al.get(0).val;
-                     if(prev%2!=0) return false;
-                    for(int i=1;i<size;i++){
-                        if(al.get(i).val%2==0 && al.get(i).val<prev){
-                            prev=al.get(i).val;
-                        }else{
+                    if(level%2==0){
+                        if(n.val%2==0 || n.val<=prev) //
                             return false;
-                        }
-                    }
-                }else{
-                    int prev=al.get(0).val;
-                    if(prev%2==0) return false;
-                    for(int i=1;i<size;i++){
-                        if(al.get(i).val%2!=0 && al.get(i).val>prev){
-                            prev=al.get(i).val;
-                        }else{
+                    }else{
+                        if(n.val%2!=0 || n.val>=prev) //
                             return false;
-                        }
                     }
+                    if(n.left!=null) q.add(n.left);
+                    if(n.right!=null) q.add(n.right);
+                    prev=n.val;
                 }
                 level++;
 			}
