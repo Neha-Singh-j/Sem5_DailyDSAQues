@@ -14,30 +14,19 @@
  * }
  */
 class Solution {
-   
     public int pathSum(TreeNode root, int targetSum) {
-        if(root==null){
-            return 0;
-        }
-        
-    int a= check(root,0L,(long)targetSum); // not neccessarily starts from root so we also pass left and right as roots
-    int b=pathSum(root.left,targetSum);
-    int c=pathSum(root.right,targetSum);
-    return a+b+c;
-    
+        if(root==null) return 0;
+        int a=check(root,(long)targetSum);
+        int b=pathSum(root.left,targetSum);
+        int c=pathSum(root.right,targetSum);
+        return a+b+c;
     }
-    private static int check(TreeNode root, long sum,long t){
-        if(root==null){
-            return 0;
-        }
-        sum+=root.val;
+    public int check(TreeNode root, long sum){
+        if(root==null) return 0;
         int c=0;
-        if(sum==t) c++;
-      
-       c+=check(root.left,sum,t);
-       c+= check(root.right,sum,t);
-       
-    return c;
-       
+        if(sum-root.val==0) c++;
+        c+=check(root.left,sum-root.val);
+        c+=check(root.right,sum-root.val);
+        return c;
     }
 }
