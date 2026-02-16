@@ -17,20 +17,20 @@ class Solution {
     int ans=0;
     public int sumNumbers(TreeNode root) {
         
-        find(root,"");
+        find(root,0);
         return ans;
     }
-    public void find(TreeNode root, String s){
+    public void find(TreeNode root, int s){
         if(root==null){
         return;
         }
         if(root.left==null && root.right==null){
             
-            ans+=Integer.parseInt(s+root.val);
+            ans+=s*10+root.val;
         }
        // int c=Integer.parseInt(s)+root.val;
-        find(root.left,s+root.val);
-        find(root.right,s+root.val);
+        find(root.left,s*10+root.val);
+        find(root.right,s*10+root.val);
 
     }
 }
